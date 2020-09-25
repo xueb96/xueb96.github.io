@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xueb96.github.io</id>
-    <title>Gridea</title>
-    <updated>2020-09-25T12:02:59.404Z</updated>
+    <title>x的笔记本</title>
+    <updated>2020-09-25T13:00:21.933Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xueb96.github.io"/>
     <link rel="self" href="https://xueb96.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://xueb96.github.io/images/avatar.png</logo>
     <icon>https://xueb96.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2020, x的笔记本</rights>
     <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://xueb96.github.io/post/hello-gridea/</id>
-        <link href="https://xueb96.github.io/post/hello-gridea/">
+        <title type="html"><![CDATA[在Windows上搭建Linux开发环境]]></title>
+        <id>https://xueb96.github.io/post/zai-windows-shang-da-jian-linux-kai-fa-huan-jing/</id>
+        <link href="https://xueb96.github.io/post/zai-windows-shang-da-jian-linux-kai-fa-huan-jing/">
         </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+        <updated>2020-09-25T12:26:28.000Z</updated>
+        <summary type="html"><![CDATA[<p>用不习惯Mac OS，又不想全面的使用Linux，所以就在Windows上寻找解决方案了。<br>
+下面介绍我的搭建步骤。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+        <content type="html"><![CDATA[<p>用不习惯Mac OS，又不想全面的使用Linux，所以就在Windows上寻找解决方案了。<br>
+下面介绍我的搭建步骤。</p>
 <!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+<h2 id="软件安装">软件安装</h2>
+<ol>
+<li>安装WSL，<a href="https://docs.microsoft.com/zh-cn/windows/wsl/install-win10">官网教程</a>。我选择的是Ubuntu 20.04</li>
+<li>在应用商店安装Windows Terminal。（以前用的是ssh+Xshell，不过既然官方有这么好用的终端那就用起来吧）
+<ol>
+<li>将&quot;copyOnSelect&quot;的值改为true。这样就可以选中复制，右键粘贴了</li>
+<li>将&quot;defaultProfile&quot;的值改为下面Ubuntu的guid，这样下次打开进入的就是Ubuntu而不是PowerShell了</li>
+</ol>
+</li>
+<li>安装Visual Studio Code。目前最流行的编辑器，在WSL里的支持也挺好，任意目录下<code>code .</code>就能打开</li>
+</ol>
+<h2 id="linux设置">Linux设置</h2>
+<ol>
+<li>apt换源。鉴于国内网络问题，为了更快的下载速度建议更换apt国内镜像，我用的是<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华镜像站</a></li>
+<li>vim配置。作为vim小白并不会配置，所以使用了<a href="https://github.com/chxuan/vimplus">vimplus</a>一键配置</li>
+<li>git配置。见下一篇git博文</li>
+</ol>
+<h2 id="vs-code配置">VS Code配置</h2>
+<p>推荐几个我在用的插件吧</p>
+<ul>
+<li>主题 Atom One Dark Theme</li>
+<li>图标 vscode-icons</li>
+<li>左右括号匹配 Bracket Pair Colorizer 2</li>
+<li>GitLens</li>
+<li>GitHistory</li>
+</ul>
 ]]></content>
     </entry>
 </feed>
