@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xueb96.github.io</id>
     <title>x的笔记本</title>
-    <updated>2020-09-25T13:00:21.933Z</updated>
+    <updated>2020-09-25T13:27:35.129Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xueb96.github.io"/>
     <link rel="self" href="https://xueb96.github.io/atom.xml"/>
@@ -10,6 +10,34 @@
     <logo>https://xueb96.github.io/images/avatar.png</logo>
     <icon>https://xueb96.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, x的笔记本</rights>
+    <entry>
+        <title type="html"><![CDATA[Ubuntu创建新用户并配置sudo权限]]></title>
+        <id>https://xueb96.github.io/post/ubuntu-chuang-jian-xin-yong-hu-bing-pei-zhi-sudo-quan-xian/</id>
+        <link href="https://xueb96.github.io/post/ubuntu-chuang-jian-xin-yong-hu-bing-pei-zhi-sudo-quan-xian/">
+        </link>
+        <updated>2020-09-25T13:03:17.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文记录在Ubuntu系统新建一个普通用户username，并为其配置sudo权限</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文记录在Ubuntu系统新建一个普通用户username，并为其配置sudo权限</p>
+<!-- more -->
+<h2 id="新建普通用户">新建普通用户</h2>
+<p>新建用户有两个命令，第一种是<code>useradd</code>, 对应的删除用户命令是<code>userdel</code>；第二种是<code>adduser</code>，对应的删除用户命令是<code>deluser</code>。我们使用更为方便简单的<code>adduser</code></p>
+<pre><code class="language-bash">sudo su #swith user
+adduser username 
+#请将username替换成你想设置的用户名
+#根据系统提示就可以设置密码等信息，用户主目录和命令解析程序将自动指定
+su username #切换到用户username
+visudo #实际上打开的是/etc/sudoers
+#在`root ALL=(ALL:ALL) ALL`下面加入一行`username ALL=(ALL:ALL) ALL`
+#保存退出，新用户username就拥有sudo权限了
+</code></pre>
+<h2 id="修改用户密码">修改用户密码</h2>
+<p>修改密码使用<code>passwd</code>命令，可以指定要修改密码的用户，默认为当前用户</p>
+<blockquote>
+<p>普通用户修改密码有很多限制，可以先<code>sudo su</code>切换为root用户</p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[在Windows上搭建Linux开发环境]]></title>
         <id>https://xueb96.github.io/post/zai-windows-shang-da-jian-linux-kai-fa-huan-jing/</id>

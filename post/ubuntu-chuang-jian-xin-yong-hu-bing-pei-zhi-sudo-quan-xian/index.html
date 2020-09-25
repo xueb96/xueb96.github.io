@@ -2,23 +2,20 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | x的笔记本</title>
+<title>Ubuntu创建新用户并配置sudo权限 | x的笔记本</title>
 <link rel="shortcut icon" href="https://xueb96.github.io/favicon.ico?v=1601040453190">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://xueb96.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | x的笔记本 - Atom Feed" href="https://xueb96.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Ubuntu创建新用户并配置sudo权限 | x的笔记本 - Atom Feed" href="https://xueb96.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="本文记录在Ubuntu系统新建一个普通用户username，并为其配置sudo权限
 
-🏠 关于本站
-👨‍💻 博主是谁
-📬 联系我呀
-..." />
-    <meta name="keywords" content="" />
+新建普通用户
+新建用户有两个命令，第一种是useradd, 对应的删除用户命令是userdel；第二种是adduser，对应的删除用户命令是deluser..." />
+    <meta name="keywords" content="Linux使用" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -80,35 +77,52 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              Ubuntu创建新用户并配置sudo权限
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-09-25
               </span>
               <span>
                 1 min read
               </span>
               
+                <a href="https://xueb96.github.io/tag/NrmGEXdfN/" class="post-tag">
+                  # Linux使用
+                </a>
+              
             </div>
+            
+              <img class="post-feature-image" src="https://xueb96.github.io/post-images/ubuntu-chuang-jian-xin-yong-hu-bing-pei-zhi-sudo-quan-xian.webp" alt="">
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+                <p>本文记录在Ubuntu系统新建一个普通用户username，并为其配置sudo权限</p>
+<!-- more -->
+<h2 id="新建普通用户">新建普通用户</h2>
+<p>新建用户有两个命令，第一种是<code>useradd</code>, 对应的删除用户命令是<code>userdel</code>；第二种是<code>adduser</code>，对应的删除用户命令是<code>deluser</code>。我们使用更为方便简单的<code>adduser</code></p>
+<pre><code class="language-bash">sudo su #swith user
+adduser username 
+#请将username替换成你想设置的用户名
+#根据系统提示就可以设置密码等信息，用户主目录和命令解析程序将自动指定
+su username #切换到用户username
+visudo #实际上打开的是/etc/sudoers
+#在`root ALL=(ALL:ALL) ALL`下面加入一行`username ALL=(ALL:ALL) ALL`
+#保存退出，新用户username就拥有sudo权限了
+</code></pre>
+<h2 id="修改用户密码">修改用户密码</h2>
+<p>修改密码使用<code>passwd</code>命令，可以指定要修改密码的用户，默认为当前用户</p>
+<blockquote>
+<p>普通用户修改密码有很多限制，可以先<code>sudo su</code>切换为root用户</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li><a href="#%E6%96%B0%E5%BB%BA%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7">新建普通用户</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81">修改用户密码</a></li>
 </ul>
 </li>
 </ul>
@@ -118,6 +132,15 @@
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xueb96.github.io/post/zai-windows-shang-da-jian-linux-kai-fa-huan-jing/">
+              <h3 class="post-title">
+                在Windows上搭建Linux开发环境
+              </h3>
+            </a>
+          </div>
         
 
         
