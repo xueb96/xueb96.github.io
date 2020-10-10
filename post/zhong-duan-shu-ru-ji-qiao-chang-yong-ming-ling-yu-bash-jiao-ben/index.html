@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Ubuntu创建新用户并配置sudo权限 | x的笔记本</title>
+<title>终端输入技巧、常用命令与Bash脚本 | x的笔记本</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,37 +81,128 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>Ubuntu创建新用户并配置sudo权限</h1>
+            <h1>终端输入技巧、常用命令与Bash脚本</h1>
             <p class="article-meta">
               2020-09-25
               
-                <a href="https://xueb96.github.io/tag/NrmGEXdfN/" class="badge success">
+                <a href="https://xueb96.github.io/tag/NrmGEXdfN/" class="badge warning">
                   Linux使用
                 </a>
               
             </p>
             
-              <img src="https://xueb96.github.io/post-images/ubuntu-chuang-jian-xin-yong-hu-bing-pei-zhi-sudo-quan-xian.webp" alt="Ubuntu创建新用户并配置sudo权限">
+              <img src="https://xueb96.github.io/post-images/zhong-duan-shu-ru-ji-qiao-chang-yong-ming-ling-yu-bash-jiao-ben.png" alt="终端输入技巧、常用命令与Bash脚本">
             
             <div class="post-content">
-              <p>本文记录在Ubuntu系统新建一个普通用户username，并为其配置sudo权限</p>
+              <p>本文记录一下Linux终端命令行的使用</p>
 <!-- more -->
-<h2 id="新建普通用户">新建普通用户</h2>
-<p>新建用户有两个命令，第一种是<code>useradd</code>, 对应的删除用户命令是<code>userdel</code>；第二种是<code>adduser</code>，对应的删除用户命令是<code>deluser</code>。我们使用更为方便简单的<code>adduser</code></p>
-<pre><code class="language-bash">sudo su #swith user
-adduser username 
-#请将username替换成你想设置的用户名
-#根据系统提示就可以设置密码等信息，用户主目录和命令解析程序将自动指定
-su username #切换到用户username
-visudo #实际上打开的是/etc/sudoers
-#在`root ALL=(ALL:ALL) ALL`下面加入一行`username ALL=(ALL:ALL) ALL`
-#保存退出，新用户username就拥有sudo权限了
+<h2 id="输入技巧">输入技巧</h2>
+<p>在终端输入命令时，有很多快捷键可以使用，运用得当可以提高输入效率。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center">←</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+f</code></td>
+<td style="text-align:center">→</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+p</code></td>
+<td style="text-align:center">↑</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+n</code></td>
+<td style="text-align:center">↓</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+a</code></td>
+<td style="text-align:center"><strong>光标移至行首</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+e</code></td>
+<td style="text-align:center">光标移至行尾</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>alt+b</code></td>
+<td style="text-align:center">光标左移一个单词</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>alt+f</code></td>
+<td style="text-align:center">光标右移一个单词</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+u</code></td>
+<td style="text-align:center">从光标处删除至命令行首</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+k</code></td>
+<td style="text-align:center">从光标处删除至命令行尾</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+d</code></td>
+<td style="text-align:center">删除光标处的字符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+h</code></td>
+<td style="text-align:center">删除光标前的字符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>alt+Backspace</code>或<code>ctrl+w</code></td>
+<td style="text-align:center"><strong>删除一个单词</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>alt+l</code></td>
+<td style="text-align:center">清屏</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>Esc+.</code></td>
+<td style="text-align:center">上一个命令后面的参数</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+r</code></td>
+<td style="text-align:center">搜索之前执行过的一条命令</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用命令">常用命令</h2>
+<ul>
+<li>相应应用打开文件或目录：<code>xdg-open</code></li>
+<li><code>cat</code>: catenate 连接</li>
+<li>搜索文字：<code>grep</code> (global regular expression print) grep -n xxx filename.txt-n显示行号</li>
+<li>参数：<code>xargs</code></li>
+<li><code>tar</code>: tape archive</li>
+<li><code>!!</code>上一条命令</li>
+</ul>
+<p>cp -l == ln</p>
+<p>cp -s == ln -s</p>
+<h2 id="环境变量">环境变量</h2>
+<p>环境变量env 查看所有环境变量/etc/profile 中的环境变量对所有用户永久有效, 修改文件后运行source /etc/profile, 否则只能在下次重进此用户时生效~/.bash_profile 中的环境变量对单一用户永久有效</p>
+<p>pringenv    全局变量</p>
+<p>set    用户变量</p>
+<p>export</p>
+<p>unset</p>
+<p>source ~/.bashrc</p>
+<h2 id="服务">服务</h2>
+<p>SSH、Nginx、MySQL、防火墙等，在Linux上都是以服务的形式运行的，所以集中学习一下服务相关的知识和命令</p>
+<pre><code class="language-bash">$ sevice mysqld status #其实是使用的systemctl命令
+$ sevice mysqld start
+$ sevice mysqld restart
+$ sevice mysqld stop
+
+$ systemctl status mysqld
+$ systemctl start mysqld
+$ systemctl restart mysqld
+$ systemctl stop mysqld
 </code></pre>
-<h2 id="修改用户密码">修改用户密码</h2>
-<p>修改密码使用<code>passwd</code>命令，可以指定要修改密码的用户，默认为当前用户</p>
-<blockquote>
-<p>普通用户修改密码有很多限制，可以先<code>sudo su</code>切换为root用户</p>
-</blockquote>
+<h2 id="bash脚本">Bash脚本</h2>
 
             </div>
           </article>
@@ -122,9 +213,9 @@ visudo #实际上打开的是/etc/sudoers
               <div class="next">
                 下一篇
               </div>
-              <a href="https://xueb96.github.io/post/zai-windows-shang-da-jian-linux-kai-fa-huan-jing/">
+              <a href="https://xueb96.github.io/post/ubuntu-chuang-jian-xin-yong-hu-bing-pei-zhi-sudo-quan-xian/">
                 <h3 class="post-title">
-                  在Windows上搭建Linux开发环境
+                  Ubuntu创建新用户并配置sudo权限
                 </h3>
               </a>
             </div>
@@ -191,7 +282,7 @@ visudo #实际上打开的是/etc/sudoers
     </div>
     <div class="row">
       
-        <a href="https://xueb96.github.io/tag/NrmGEXdfN/" class="badge warning">
+        <a href="https://xueb96.github.io/tag/NrmGEXdfN/" class="badge secondary">
           Linux使用
         </a>
       

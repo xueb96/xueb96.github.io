@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xueb96.github.io</id>
     <title>x的笔记本</title>
-    <updated>2020-09-25T13:27:51.886Z</updated>
+    <updated>2020-10-10T05:02:55.457Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xueb96.github.io"/>
     <link rel="self" href="https://xueb96.github.io/atom.xml"/>
@@ -10,6 +10,125 @@
     <logo>https://xueb96.github.io/images/avatar.png</logo>
     <icon>https://xueb96.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, x的笔记本</rights>
+    <entry>
+        <title type="html"><![CDATA[终端输入技巧、常用命令与Bash脚本]]></title>
+        <id>https://xueb96.github.io/post/zhong-duan-shu-ru-ji-qiao-chang-yong-ming-ling-yu-bash-jiao-ben/</id>
+        <link href="https://xueb96.github.io/post/zhong-duan-shu-ru-ji-qiao-chang-yong-ming-ling-yu-bash-jiao-ben/">
+        </link>
+        <updated>2020-09-25T13:29:51.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文记录一下Linux终端命令行的使用</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文记录一下Linux终端命令行的使用</p>
+<!-- more -->
+<h2 id="输入技巧">输入技巧</h2>
+<p>在终端输入命令时，有很多快捷键可以使用，运用得当可以提高输入效率。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center">←</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+f</code></td>
+<td style="text-align:center">→</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+p</code></td>
+<td style="text-align:center">↑</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+n</code></td>
+<td style="text-align:center">↓</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+a</code></td>
+<td style="text-align:center"><strong>光标移至行首</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+e</code></td>
+<td style="text-align:center">光标移至行尾</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>alt+b</code></td>
+<td style="text-align:center">光标左移一个单词</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>alt+f</code></td>
+<td style="text-align:center">光标右移一个单词</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+u</code></td>
+<td style="text-align:center">从光标处删除至命令行首</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+k</code></td>
+<td style="text-align:center">从光标处删除至命令行尾</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+d</code></td>
+<td style="text-align:center">删除光标处的字符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+h</code></td>
+<td style="text-align:center">删除光标前的字符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>alt+Backspace</code>或<code>ctrl+w</code></td>
+<td style="text-align:center"><strong>删除一个单词</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>alt+l</code></td>
+<td style="text-align:center">清屏</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>Esc+.</code></td>
+<td style="text-align:center">上一个命令后面的参数</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+r</code></td>
+<td style="text-align:center">搜索之前执行过的一条命令</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用命令">常用命令</h2>
+<ul>
+<li>相应应用打开文件或目录：<code>xdg-open</code></li>
+<li><code>cat</code>: catenate 连接</li>
+<li>搜索文字：<code>grep</code> (global regular expression print) grep -n xxx filename.txt-n显示行号</li>
+<li>参数：<code>xargs</code></li>
+<li><code>tar</code>: tape archive</li>
+<li><code>!!</code>上一条命令</li>
+</ul>
+<p>cp -l == ln</p>
+<p>cp -s == ln -s</p>
+<h2 id="环境变量">环境变量</h2>
+<p>环境变量env 查看所有环境变量/etc/profile 中的环境变量对所有用户永久有效, 修改文件后运行source /etc/profile, 否则只能在下次重进此用户时生效~/.bash_profile 中的环境变量对单一用户永久有效</p>
+<p>pringenv    全局变量</p>
+<p>set    用户变量</p>
+<p>export</p>
+<p>unset</p>
+<p>source ~/.bashrc</p>
+<h2 id="服务">服务</h2>
+<p>SSH、Nginx、MySQL、防火墙等，在Linux上都是以服务的形式运行的，所以集中学习一下服务相关的知识和命令</p>
+<pre><code class="language-bash">$ sevice mysqld status #其实是使用的systemctl命令
+$ sevice mysqld start
+$ sevice mysqld restart
+$ sevice mysqld stop
+
+$ systemctl status mysqld
+$ systemctl start mysqld
+$ systemctl restart mysqld
+$ systemctl stop mysqld
+</code></pre>
+<h2 id="bash脚本">Bash脚本</h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ubuntu创建新用户并配置sudo权限]]></title>
         <id>https://xueb96.github.io/post/ubuntu-chuang-jian-xin-yong-hu-bing-pei-zhi-sudo-quan-xian/</id>
