@@ -26,7 +26,7 @@ sudo apt upgrade
 
 ## Go
 
-- 安装go
+- 安装go [官方指引](https://go.dev/doc/install) | [国内下载镜像](https://studygolang.com/dl)
 
 ```bash
 wget https://go.dev/dl/go1.18.6.linux-amd64.tar.gz
