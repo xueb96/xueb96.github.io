@@ -8,6 +8,11 @@
 
 - 替换[国内apt镜像](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
 
+```bash
+sudo sed -i "s@http://.*archive.ubuntu.com@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
+sudo sed -i "s@http://.*security.ubuntu.com@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
+```
+
 - 更新所有apt包
 
 ```bash
@@ -17,28 +22,38 @@ sudo apt upgrade
 
 - [消除更新包时的弹窗](https://stackoverflow.com/questions/73397110/how-to-stop-ubuntu-pop-up-daemons-using-outdated-libraries-when-using-apt-to-i)
 
+```bash
+vim /etc/needrestart/needrestart.conf
+#$nrconf{restart} = 'i'; 改成
+$nrconf{restart} = 'a';
+```
+
 ## Docker
 
 - 安装docker，参考[官方安装教程](https://docs.docker.com/engine/install/ubuntu/)
 
 - 替换[国内dockerhub镜像（腾讯云）](https://cloud.tencent.com/document/product/213/8623)
+
 - 设置[普通用户直接运行不用sudo](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
+
+```bash
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker run hello-world
+```
 
 ## Go
 
 - 安装go [官方指引](https://go.dev/doc/install) | [国内下载镜像](https://studygolang.com/dl)
 
 ```bash
-wget https://go.dev/dl/go1.18.6.linux-amd64.tar.gz
+wget https://studygolang.com/dl/golang/go1.18.10.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf go1.18.6.linux-amd64.tar.gz
-export PATH=$PATH:/usr/local/go/bin
+sudo tar -C /usr/local -xzf go1.18.10.linux-amd64.tar.gz
+vim .profile
+# 末尾增加一行：export PATH=$PATH:/usr/local/go/bin
 go version
-```
-
-- 设置国内镜像
-
-```bash
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.cn,direct
 ```
